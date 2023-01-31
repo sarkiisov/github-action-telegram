@@ -95126,18 +95126,25 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var core = __importStar(__nccwpck_require__(42186));
 var octokit_1 = __nccwpck_require__(57467);
 var node_telegram_bot_api_1 = __importDefault(__nccwpck_require__(10633));
-var fs_1 = __importDefault(__nccwpck_require__(57147));
 var telegramBotToken = core.getInput('telegramBotToken');
 var githubToken = core.getInput('githubToken');
+var repositoryOwner = core.getInput('repositoryOwner');
+var srepositoryName = core.getInput('srepositoryName');
+var pullNumber = core.getInput('pullNumber');
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, octokit, ev;
+        var bot, octokit, commits;
         return __generator(this, function (_a) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
             octokit = new octokit_1.Octokit({ auth: githubToken });
+            commits = octokit.rest.pulls.listCommits({
+                owner: repositoryOwner,
+                repo: srepositoryName,
+                pull_number: parseInt(pullNumber),
+            });
             bot.sendMessage(-619418505, 'Hello from bot');
-            ev = JSON.parse(fs_1.default.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
-            console.log("EVENT PATH VAR: ", ev);
+            // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
+            console.log("VALUE: ", commits);
             return [2 /*return*/];
         });
     });

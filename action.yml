@@ -4,11 +4,23 @@ branding:
   color: 'grey-dark'
 inputs:
   telegramBotToken:
-    description: '1'
+    description: 'Telegram bot token'
     required: true
   githubToken:
-    description: '2'
+    description: 'GitHub token'
     required: true
+  actor:
+    description: 'Actor'
+    default: ${{ github.actor }}
+  repositoryOwner:
+    description: 'Repository owner'
+    default: ${{ github.repository_owner }}
+  repositoryName:
+    description: 'Repository name'
+    default: ${{ github.event.repository.name }}
+  pullNumber:  
+    description: 'Pr number'
+    default: ${{ github.event.number }}
 runs:
   using: 'node16'
   main: 'dist/index.js'
