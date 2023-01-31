@@ -20,6 +20,12 @@ const pullNumber = core.getInput('pullNumber');
     pull_number: parseInt(pullNumber),
   });
 
+  const message = `
+  Открыт новый PR
+  
+  https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber}
+  `
+  bot.sendMessage(-619418505, message);
   bot.sendMessage(-619418505, JSON.stringify(data));
 
   // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))

@@ -95133,7 +95133,7 @@ var repositoryName = core.getInput('repositoryName');
 var pullNumber = core.getInput('pullNumber');
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, octokit, data;
+        var bot, octokit, data, message;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -95146,6 +95146,8 @@ var pullNumber = core.getInput('pullNumber');
                         })];
                 case 1:
                     data = (_a.sent()).data;
+                    message = "\n  \u041E\u0442\u043A\u0440\u044B\u0442 \u043D\u043E\u0432\u044B\u0439 PR\n  \n  https://github.com/".concat(repositoryOwner, "/").concat(repositoryName, "/pull/").concat(pullNumber, "\n  ");
+                    bot.sendMessage(-619418505, message);
                     bot.sendMessage(-619418505, JSON.stringify(data));
                     return [2 /*return*/];
             }
