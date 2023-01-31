@@ -1,13 +1,20 @@
 import * as core from '@actions/core';
+import { Octokit } from "octokit";
 import Bot from 'node-telegram-bot-api';
+import fs from 'fs';
 
 
-const secret = core.getInput('secret');
-const formattedSecret = `Secret variable : ${secret}`;
+const telegramBotToken = core.getInput('telegramBotToken');
+const githubToken = core.getInput('githubToken');
 
 (async function() {
-  const bot = new Bot('5942682565:AAGYzxL0zSMr7_AI0w3nT02tk_PBexfZSn8');
+  const bot = new Bot(telegramBotToken);
+  const octokit = new Octokit({ auth: githubToken });
 
-  bot.sendMessage(345021341, formattedSecret);
-  console.log(`Secret variable: `, formattedSecret);
+  bot.sendMessage(-619418505, 'Hello from bot');
+
+  const ev = JSON.parse(
+    fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8')
+  )
+  console.log(`EVENT PATH VAR: `, ev);
 })()

@@ -3,8 +3,11 @@ branding:
   icon: 'send'
   color: 'grey-dark'
 inputs:
-  secret:
-    description: 'Secret value from connected repository'
+  telegramBotToken:
+    description: '1'
+    required: true
+  githubToken:
+    description: '2'
     required: true
 runs:
   using: 'node16'
