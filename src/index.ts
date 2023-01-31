@@ -1,4 +1,5 @@
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 import { Octokit } from "octokit";
 import Bot from 'node-telegram-bot-api';
 
@@ -36,5 +37,5 @@ const pullNumber = core.getInput('pullNumber');
 [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`
 
   bot.sendMessage(345021341, message, { parse_mode: 'MarkdownV2' });
-  // bot.sendMessage(-619418505, JSON.stringify(data));
+  bot.sendMessage(-619418505, JSON.stringify(github.context));
 })()
