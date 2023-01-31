@@ -95133,7 +95133,7 @@ var repositoryName = core.getInput('repositoryName');
 var pullNumber = core.getInput('pullNumber');
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, octokit, commits;
+        var bot, octokit, data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -95145,10 +95145,8 @@ var pullNumber = core.getInput('pullNumber');
                             pull_number: parseInt(pullNumber),
                         })];
                 case 1:
-                    commits = _a.sent();
-                    bot.sendMessage(-619418505, 'Hello from bot');
-                    // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
-                    console.log("VALUE: ", commits);
+                    data = (_a.sent()).data;
+                    bot.sendMessage(-619418505, JSON.stringify(data));
                     return [2 /*return*/];
             }
         });

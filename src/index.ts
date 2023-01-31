@@ -14,14 +14,14 @@ const pullNumber = core.getInput('pullNumber');
   const bot = new Bot(telegramBotToken);
   const octokit = new Octokit({ auth: githubToken });
 
-  const commits = await octokit.rest.pulls.listCommits({
+  const { data } = await octokit.rest.pulls.listCommits({
     owner: repositoryOwner,
     repo: repositoryName,
     pull_number: parseInt(pullNumber),
   });
 
-  bot.sendMessage(-619418505, 'Hello from bot');
+  bot.sendMessage(-619418505, JSON.stringify(data));
 
   // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
-  console.log(`VALUE: `, commits);
+  // console.log(`VALUE: `, data[0].commit, data[0].author);
 })()
