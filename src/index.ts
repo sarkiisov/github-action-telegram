@@ -20,14 +20,22 @@ const pullNumber = core.getInput('pullNumber');
     pull_number: parseInt(pullNumber),
   });
 
+  const { additions, deletions } = data.reduce((result, current) => {
+    result.additions += current.additions;
+    result.deletions += current.deletions;
+    return result;
+  }, { additions: 0, deletions: 0 })
+
   const message = `
-  Открыт новый PR
-  
-  https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber}
-  `
+<b>Открыт новый PR</b>
+
+Изменено файлов: ${data.length}
+Добавлено:
+🟩 <u>${additions}</u> строк
+🟥 <u>${deletions}</u> строк
+
+(Открыть на GitHub)[https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber}]`
+
   bot.sendMessage(-619418505, message);
   bot.sendMessage(-619418505, JSON.stringify(data));
-
-  // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
-  // console.log(`VALUE: `, data[0].commit, data[0].author);
 })()

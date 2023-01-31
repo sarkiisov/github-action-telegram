@@ -95133,9 +95133,9 @@ var repositoryName = core.getInput('repositoryName');
 var pullNumber = core.getInput('pullNumber');
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, octokit, data, message;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var bot, octokit, data, _a, additions, deletions, message;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     bot = new node_telegram_bot_api_1.default(telegramBotToken);
                     octokit = new octokit_1.Octokit({ auth: githubToken });
@@ -95145,8 +95145,13 @@ var pullNumber = core.getInput('pullNumber');
                             pull_number: parseInt(pullNumber),
                         })];
                 case 1:
-                    data = (_a.sent()).data;
-                    message = "\n  \u041E\u0442\u043A\u0440\u044B\u0442 \u043D\u043E\u0432\u044B\u0439 PR\n  \n  https://github.com/".concat(repositoryOwner, "/").concat(repositoryName, "/pull/").concat(pullNumber, "\n  ");
+                    data = (_b.sent()).data;
+                    _a = data.reduce(function (result, current) {
+                        result.additions += current.additions;
+                        result.deletions += current.deletions;
+                        return result;
+                    }, { additions: 0, deletions: 0 }), additions = _a.additions, deletions = _a.deletions;
+                    message = "\n<b>\u041E\u0442\u043A\u0440\u044B\u0442 \u043D\u043E\u0432\u044B\u0439 PR</b>\n\n\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u043E \u0444\u0430\u0439\u043B\u043E\u0432: ".concat(data.length, "\n\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E:\n\uD83D\uDFE9 <u>").concat(additions, "</u> \u0441\u0442\u0440\u043E\u043A\n\uD83D\uDFE5 <u>").concat(deletions, "</u> \u0441\u0442\u0440\u043E\u043A\n\n(\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043D\u0430 GitHub)[https://github.com/").concat(repositoryOwner, "/").concat(repositoryName, "/pull/").concat(pullNumber, "]");
                     bot.sendMessage(-619418505, message);
                     bot.sendMessage(-619418505, JSON.stringify(data));
                     return [2 /*return*/];
