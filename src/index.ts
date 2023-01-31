@@ -27,11 +27,11 @@ const pullNumber = core.getInput('pullNumber');
   }, { additions: 0, deletions: 0 })
 
   const message = `
-Открыт новый PR
+*Открыт новый PR*
 
-🖊️ Изменено файлов: ${data.length}
-🟩 Добавлено: ${additions} строк
-🟥 Удалено: ${deletions} строк
+🖊️ *Изменено файлов:* ${data.length}
+🟩 *Добавлено:* ${additions} строк
+🟥 *Удалено:* ${deletions} строк
 
 [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`
 
