@@ -7,7 +7,7 @@ const telegramBotToken = core.getInput('telegramBotToken');
 const githubToken = core.getInput('githubToken');
 
 const repositoryOwner = core.getInput('repositoryOwner');
-const srepositoryName = core.getInput('srepositoryName');
+const repositoryName = core.getInput('repositoryName');
 const pullNumber = core.getInput('pullNumber');
 
 (async function() {
@@ -16,7 +16,7 @@ const pullNumber = core.getInput('pullNumber');
 
   const commits = await octokit.rest.pulls.listCommits({
     owner: repositoryOwner,
-    repo: srepositoryName,
+    repo: repositoryName,
     pull_number: parseInt(pullNumber),
   });
 

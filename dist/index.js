@@ -95129,7 +95129,7 @@ var node_telegram_bot_api_1 = __importDefault(__nccwpck_require__(10633));
 var telegramBotToken = core.getInput('telegramBotToken');
 var githubToken = core.getInput('githubToken');
 var repositoryOwner = core.getInput('repositoryOwner');
-var srepositoryName = core.getInput('srepositoryName');
+var repositoryName = core.getInput('repositoryName');
 var pullNumber = core.getInput('pullNumber');
 (function () {
     return __awaiter(this, void 0, void 0, function () {
@@ -95141,7 +95141,7 @@ var pullNumber = core.getInput('pullNumber');
                     octokit = new octokit_1.Octokit({ auth: githubToken });
                     return [4 /*yield*/, octokit.rest.pulls.listCommits({
                             owner: repositoryOwner,
-                            repo: srepositoryName,
+                            repo: repositoryName,
                             pull_number: parseInt(pullNumber),
                         })];
                 case 1:
