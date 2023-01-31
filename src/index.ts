@@ -35,6 +35,6 @@ const pullNumber = core.getInput('pullNumber');
 
 [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`
 
-  bot.sendMessage(-619418505, message, { parse_mode: 'MarkdownV2' });
+  bot.sendMessage(345021341, message, { parse_mode: 'MarkdownV2' });
   // bot.sendMessage(-619418505, JSON.stringify(data));
 })()
