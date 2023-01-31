@@ -37,5 +37,5 @@ const pullNumber = core.getInput('pullNumber');
 (Открыть на GitHub)[https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber}]`
 
   bot.sendMessage(-619418505, message);
-  bot.sendMessage(-619418505, JSON.stringify(data));
+  // bot.sendMessage(-619418505, JSON.stringify(data));
 })()
