@@ -30,7 +30,7 @@ const chatId = 345021341;
   }, { additions: 0, deletions: 0 })
 
   const message = `
-*Открыт новый PR*
+*Открыт новый (PR)*
 
 🖊️ *Изменено файлов:* ${data.length}
 🟩 *Добавлено:* ${additions} строк
@@ -39,5 +39,5 @@ const chatId = 345021341;
 [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`
 
   bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
-  bot.sendMessage(chatId, JSON.stringify(github.context));
+  bot.sendMessage(chatId, JSON.stringify(github.context.payload));
 })()
