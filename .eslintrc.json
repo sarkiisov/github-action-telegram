@@ -1,0 +1,51 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module",
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base"
+  ],
+  "plugins": [
+    "import",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "no-continue": "off",
+    "no-alert": "off",
+    "max-len": "off",
+    "quote-props": "off",
+    "no-restricted-syntax": "off",
+    "linebreak-style": "off",
+    "operator-linebreak": ["error", "after", { 
+      "overrides": { 
+        "?": "ignore",
+        ":": "ignore" 
+      } 
+    }],
+    "comma-dangle": "off",
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+          "delimiter": "semi",
+          "requireLast": true
+      },
+      "singleline": {
+          "delimiter": "semi",
+          "requireLast": false
+      }
+    }]
+  }
+}
