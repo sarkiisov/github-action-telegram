@@ -97653,8 +97653,9 @@ var chatId = 345021341;
                         result.deletions += current.deletions;
                         return result;
                     }, { additions: 0, deletions: 0 }), additions = _a.additions, deletions = _a.deletions;
-                    message = "\n*\u041E\u0442\u043A\u0440\u044B\u0442 \u043D\u043E\u0432\u044B\u0439 (PR)*\n\n\uD83D\uDD8A\uFE0F *\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u043E \u0444\u0430\u0439\u043B\u043E\u0432:* ".concat(data.length, "\n\uD83D\uDFE9 *\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E:* ").concat(additions, " \u0441\u0442\u0440\u043E\u043A\n\uD83D\uDFE5 *\u0423\u0434\u0430\u043B\u0435\u043D\u043E:* ").concat(deletions, " \u0441\u0442\u0440\u043E\u043A\n\n[\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043D\u0430 GitHub](https://github.com/").concat(repositoryOwner, "/").concat(repositoryName, "/pull/").concat(pullNumber, ")");
+                    message = "\n*\u041E\u0442\u043A\u0440\u044B\u0442 \u043D\u043E\u0432\u044B\u0439 PR*\n\n\uD83D\uDD8A\uFE0F *\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u043E \u0444\u0430\u0439\u043B\u043E\u0432:* ".concat(data.length, "\n\uD83D\uDFE9 *\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E:* ").concat(additions, " \u0441\u0442\u0440\u043E\u043A\n\uD83D\uDFE5 *\u0423\u0434\u0430\u043B\u0435\u043D\u043E:* ").concat(deletions, " \u0441\u0442\u0440\u043E\u043A\n\n[\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043D\u0430 GitHub](https://github.com/").concat(repositoryOwner, "/").concat(repositoryName, "/pull/").concat(pullNumber, ")");
                     bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
+                    console.log('Context: ', JSON.stringify(github.context.payload));
                     bot.sendMessage(chatId, JSON.stringify(github.context.payload));
                     return [2 /*return*/];
             }
