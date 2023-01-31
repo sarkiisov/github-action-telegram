@@ -95135,17 +95135,22 @@ var pullNumber = core.getInput('pullNumber');
     return __awaiter(this, void 0, void 0, function () {
         var bot, octokit, commits;
         return __generator(this, function (_a) {
-            bot = new node_telegram_bot_api_1.default(telegramBotToken);
-            octokit = new octokit_1.Octokit({ auth: githubToken });
-            commits = octokit.rest.pulls.listCommits({
-                owner: repositoryOwner,
-                repo: srepositoryName,
-                pull_number: parseInt(pullNumber),
-            });
-            bot.sendMessage(-619418505, 'Hello from bot');
-            // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
-            console.log("VALUE: ", commits);
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    bot = new node_telegram_bot_api_1.default(telegramBotToken);
+                    octokit = new octokit_1.Octokit({ auth: githubToken });
+                    return [4 /*yield*/, octokit.rest.pulls.listCommits({
+                            owner: repositoryOwner,
+                            repo: srepositoryName,
+                            pull_number: parseInt(pullNumber),
+                        })];
+                case 1:
+                    commits = _a.sent();
+                    bot.sendMessage(-619418505, 'Hello from bot');
+                    // const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
+                    console.log("VALUE: ", commits);
+                    return [2 /*return*/];
+            }
         });
     });
 })();
