@@ -1,0 +1,11 @@
+name: 'Transfer secret action'
+branding:
+  icon: 'send'
+  color: 'grey-dark'
+inputs:
+  secret:
+    description: 'Secret value from connected repository'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
