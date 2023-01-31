@@ -11,6 +11,8 @@ const repositoryOwner = core.getInput('repositoryOwner');
 const repositoryName = core.getInput('repositoryName');
 const pullNumber = core.getInput('pullNumber');
 
+const chatId = 345021341;
+
 (async function() {
   const bot = new Bot(telegramBotToken);
   const octokit = new Octokit({ auth: githubToken });
@@ -36,6 +38,6 @@ const pullNumber = core.getInput('pullNumber');
 
 [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`
 
-  bot.sendMessage(345021341, message, { parse_mode: 'MarkdownV2' });
-  bot.sendMessage(-619418505, JSON.stringify(github.context));
+  bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
+  bot.sendMessage(chatId, JSON.stringify(github.context));
 })()
