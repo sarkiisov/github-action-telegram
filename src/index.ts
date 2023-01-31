@@ -14,7 +14,7 @@ const pullNumber = core.getInput('pullNumber');
   const bot = new Bot(telegramBotToken);
   const octokit = new Octokit({ auth: githubToken });
 
-  const { data } = await octokit.rest.pulls.listCommits({
+  const { data } = await octokit.rest.pulls.listFiles({
     owner: repositoryOwner,
     repo: repositoryName,
     pull_number: parseInt(pullNumber),

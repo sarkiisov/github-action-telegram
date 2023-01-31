@@ -95139,7 +95139,7 @@ var pullNumber = core.getInput('pullNumber');
                 case 0:
                     bot = new node_telegram_bot_api_1.default(telegramBotToken);
                     octokit = new octokit_1.Octokit({ auth: githubToken });
-                    return [4 /*yield*/, octokit.rest.pulls.listCommits({
+                    return [4 /*yield*/, octokit.rest.pulls.listFiles({
                             owner: repositoryOwner,
                             repo: repositoryName,
                             pull_number: parseInt(pullNumber),
