@@ -63593,31 +63593,20 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var chatId = 345021341;
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, _a, title, body, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, login, senderUrl;
+        var bot, action, _a, title, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, login, senderUrl, message;
         return __generator(this, function (_c) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
-            _a = github.context.payload.pull_request, title = _a.title, body = _a.body, number = _a.number, commits = _a.commits, pullUrl = _a.html_url, additions = _a.additions, deletions = _a.deletions, changed_files = _a.changed_files, requested_reviewers = _a.requested_reviewers;
+            action = github.context.payload.action;
+            _a = github.context.payload.pull_request, title = _a.title, number = _a.number, commits = _a.commits, pullUrl = _a.html_url, additions = _a.additions, deletions = _a.deletions, changed_files = _a.changed_files, requested_reviewers = _a.requested_reviewers;
             reviewers = requested_reviewers.reduce(function (accumulator, currentValue) {
                 var line = "".concat(currentValue.login, " ").concat(currentValue.html_url, " \n");
                 return accumulator + line;
             }, '');
             _b = github.context.payload.sender, login = _b.login, senderUrl = _b.html_url;
-            // const reviewers = octokit.rest.pulls.listReviews({
-            //   owner,
-            //   repo: repositoryName,
-            //   pull_number: pullNumber
-            // });
-            // const { data } = await octokit.rest.pulls.listFiles({
-            //   owner: repositoryOwner,
-            //   repo: repositoryName,
-            //   pull_number: parseInt(pullNumber),
-            // });
-            // const { additions, deletions } = data.reduce((result, current) => {
-            //   result.additions += current.additions;
-            //   result.deletions += current.deletions;
-            //   return result;
-            // }, { additions: 0, deletions: 0 });
-            bot.sendMessage(chatId, "PullUrl: ".concat(pullUrl, ", Title ").concat(title, ", Body: ").concat(body, ", \n  Number: ").concat(number, ", Commits: ").concat(commits, ", SenderLogin: ").concat(login, ", SenderUrl: ").concat(senderUrl, ", Additions: ").concat(additions, ", Deletions: ").concat(deletions, ", CahngedFiles: ").concat(changed_files, ", Reviewers ").concat(reviewers));
+            message = "\n\u2934 Pull request ".concat(action, " by [").concat(login, "](").concat(senderUrl, ")\n\n*").concat(title, " (#").concat(number, ")*\n\nCommits: ").concat(commits, "\nAddition: ").concat(additions, "\nDeletions: ").concat(deletions, "\nChanged files: ").concat(changed_files, "\nReviewers:\n").concat(reviewers, "\n\n[View details](").concat(pullUrl, ")\n");
+            // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
+            // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
+            bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
             console.log('Repo context: ', JSON.stringify(github.context.repo));
             console.log('Payload: ', JSON.stringify(github.context.payload));
             return [2 /*return*/];

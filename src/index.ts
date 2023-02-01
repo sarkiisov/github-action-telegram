@@ -19,8 +19,10 @@ const chatId = 345021341;
   const bot = new Bot(telegramBotToken);
   // const octokit = github.getOctokit(githubToken);
 
+  const { action } = github.context.payload;
+
   const {
-    title, body, number, commits, html_url: pullUrl, additions, deletions, changed_files, requested_reviewers
+    title, number, commits, html_url: pullUrl, additions, deletions, changed_files, requested_reviewers
   } = github.context.payload.pull_request;
 
   const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
@@ -48,8 +50,24 @@ const chatId = 345021341;
   //   return result;
   // }, { additions: 0, deletions: 0 });
 
-  bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body}, 
-  Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
+  const message = `
+⤴ Pull request ${action} by [${login}](${senderUrl})
+
+*${title} (#${number})*
+
+Commits: ${commits}
+Addition: ${additions}
+Deletions: ${deletions}
+Changed files: ${changed_files}
+Reviewers:
+${reviewers}
+
+[View details](${pullUrl})
+`;
+
+  // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
+  // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
+  bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
   console.log('Repo context: ', JSON.stringify(github.context.repo));
   console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));
