@@ -63,7 +63,7 @@ const chatId = 345021341;
 ✍️ <b>Description:</b>
 ${body}
 🕵️‍♂️ <b>Reviewers:</b>
-${reviewers === '' ? '-' : reviewers}
+${reviewers === '' ? 'No reviewers' : reviewers}
 `;
 
   const m1 = `
@@ -72,11 +72,11 @@ Additions: <b>+${additions}</b>
 Deletions: <b>-${deletions}</b>
 Changed files: <b>${changed_files}</b>
 `;
+  bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
 
   // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
   // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
-  bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
-  console.log('Repo context: ', JSON.stringify(github.context.repo));
-  console.log('Payload: ', JSON.stringify(github.context.payload));
+  // console.log('Repo context: ', JSON.stringify(github.context.repo));
+  // console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));
 }());
