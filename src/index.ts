@@ -57,7 +57,7 @@ const chatId = 345021341;
 <b>[${ownerLogin} / ${repositoryName}]</b>
 
 ⤴ <b>Pull request:</b> 
-<a href="${pullUrl}">${title} (<b>#${number}</b>)</a>
+<a href="${pullUrl}">${title} (<b>#${number}</b>)</a> \n
 👨‍💻 <b>Opened by:</b> 
 <a href="${senderUrl}">${senderLogin}</a>
 ✍️ <b>Description:</b>

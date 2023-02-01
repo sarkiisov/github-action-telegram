@@ -63606,7 +63606,7 @@ var chatId = 345021341;
             _b = github.context.payload.sender, senderLogin = _b.login, senderUrl = _b.html_url;
             _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
             _d = github.context.payload.repository.owner, ownerLogin = _d.login, ownerUrl = _d.html_url;
-            message = "\n<b>[".concat(ownerLogin, " / ").concat(repositoryName, "]</b>\n\n\u2934 <b>Pull request:</b> \n<a href=\"").concat(pullUrl, "\">").concat(title, " (<b>#").concat(number, "</b>)</a>\n\uD83D\uDC68\u200D\uD83D\uDCBB <b>Opened by:</b> \n<a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\u270D\uFE0F <b>Description:</b>\n").concat(body, "\n\uD83D\uDD75\uFE0F\u200D\u2642\uFE0F <b>Reviewers:</b>\n").concat(reviewers === '' ? 'No reviewers' : reviewers, "\n");
+            message = "\n<b>[".concat(ownerLogin, " / ").concat(repositoryName, "]</b>\n\n\u2934 <b>Pull request:</b> \n<a href=\"").concat(pullUrl, "\">").concat(title, " (<b>#").concat(number, "</b>)</a> \n\n\uD83D\uDC68\u200D\uD83D\uDCBB <b>Opened by:</b> \n<a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\u270D\uFE0F <b>Description:</b>\n").concat(body, "\n\uD83D\uDD75\uFE0F\u200D\u2642\uFE0F <b>Reviewers:</b>\n").concat(reviewers === '' ? 'No reviewers' : reviewers, "\n");
             m1 = "\nCommits: <b>".concat(commits, "</b>\nAdditions: <b>+").concat(additions, "</b>\nDeletions: <b>-").concat(deletions, "</b>\nChanged files: <b>").concat(changed_files, "</b>\n");
             bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
             return [2 /*return*/];
