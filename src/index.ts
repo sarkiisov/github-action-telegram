@@ -27,7 +27,7 @@ const chatId = 345021341;
   } = github.context.payload.pull_request;
 
   const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
-    const line = `${currentValue.login} ${currentValue.html_url} `;
+    const line = `<a href="${currentValue.html_url}">${currentValue.login}</a>`;
     return accumulator + line;
   }, '');
 
@@ -58,10 +58,12 @@ const chatId = 345021341;
 
 ⤴ <b>Pull request:</b> 
 <a href="${pullUrl}">${title} (<b>#${number}</b>)</a>
-👤 <b>Opened by:</b> 
+👨‍💻 <b>Opened by:</b> 
 <a href="${senderUrl}">${senderLogin}</a>
 ✍️ <b>Description:</b>
 ${body}
+🕵️‍♂️ <b>Reviewers:</b>
+${reviewers === '' ? '-' : reviewers}
 `;
 
   const m1 = `
