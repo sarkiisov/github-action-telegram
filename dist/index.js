@@ -63592,10 +63592,15 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var chatId = 345021341;
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot;
-        return __generator(this, function (_a) {
+        var bot, _a, title, body, number, commits;
+        return __generator(this, function (_b) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
-            // const octokit = github.getOctokit(githubToken);
+            _a = github.context.payload.pull_request, title = _a.title, body = _a.body, number = _a.number, commits = _a.commits;
+            // const reviewers = octokit.rest.pulls.listReviews({
+            //   owner,
+            //   repo: repositoryName,
+            //   pull_number: pullNumber
+            // });
             // const { data } = await octokit.rest.pulls.listFiles({
             //   owner: repositoryOwner,
             //   repo: repositoryName,
@@ -63606,13 +63611,7 @@ var chatId = 345021341;
             //   result.deletions += current.deletions;
             //   return result;
             // }, { additions: 0, deletions: 0 });
-            //   const message = `
-            // *Открыт новый PR*
-            // 🖊️ *Изменено файлов:* ${data.length}
-            // 🟩 *Добавлено:* ${additions} строк
-            // 🟥 *Удалено:* ${deletions} строк
-            // [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`;
-            bot.sendMessage(chatId, 'Hello', { parse_mode: 'MarkdownV2' });
+            bot.sendMessage(chatId, "".concat(title, ", ").concat(body, ", ").concat(number, ", ").concat(commits));
             console.log('Repo context: ', JSON.stringify(github.context.repo));
             console.log('Payload: ', JSON.stringify(github.context.payload));
             return [2 /*return*/];

@@ -12,8 +12,21 @@ const telegramBotToken = core.getInput('telegramBotToken');
 const chatId = 345021341;
 
 (async function () {
+  // const { owner, repo: repositoryName } = github.context.repo;
+  // const { number: pullNumber } = github.context.payload;
+
   const bot = new Bot(telegramBotToken);
   // const octokit = github.getOctokit(githubToken);
+
+  const {
+    title, body, number, commits
+  } = github.context.payload.pull_request;
+
+  // const reviewers = octokit.rest.pulls.listReviews({
+  //   owner,
+  //   repo: repositoryName,
+  //   pull_number: pullNumber
+  // });
 
   // const { data } = await octokit.rest.pulls.listFiles({
   //   owner: repositoryOwner,
@@ -27,14 +40,7 @@ const chatId = 345021341;
   //   return result;
   // }, { additions: 0, deletions: 0 });
 
-  //   const message = `
-  // *Открыт новый PR*
-  // 🖊️ *Изменено файлов:* ${data.length}
-  // 🟩 *Добавлено:* ${additions} строк
-  // 🟥 *Удалено:* ${deletions} строк
-  // [Открыть на GitHub](https://github.com/${repositoryOwner}/${repositoryName}/pull/${pullNumber})`;
-
-  bot.sendMessage(chatId, 'Hello', { parse_mode: 'MarkdownV2' });
+  bot.sendMessage(chatId, `${title}, ${body}, ${number}, ${commits}`);
   console.log('Repo context: ', JSON.stringify(github.context.repo));
   console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));
