@@ -55,11 +55,8 @@ const chatId = 345021341;
 
   const message = `
 ⤴ Pull request <a href="${pullUrl}"><b>(#${number})</b></a> in <a href="${ownerUrl}">${ownerLogin}</a>/<a href="${repositoryUrl}">${repositoryName}</a>
-👤 <a href="${senderUrl}">${senderLogin}</a>
-<b>Title:</b>
-${title}
-<b>Description:</b>
-${body}
+Opened by: <a href="${senderUrl}"><b>${senderLogin}</b></a>
+Title: <b>Title: ${title}</b>
 `;
 
   // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},

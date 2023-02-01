@@ -63606,7 +63606,7 @@ var chatId = 345021341;
             _b = github.context.payload.sender, senderLogin = _b.login, senderUrl = _b.html_url;
             _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
             _d = github.context.payload.repository.owner, ownerLogin = _d.login, ownerUrl = _d.html_url;
-            message = "\n\u2934 Pull request <a href=\"".concat(pullUrl, "\"><b>(#").concat(number, ")</b></a> in <a href=\"").concat(ownerUrl, "\">").concat(ownerLogin, "</a>/<a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\n\uD83D\uDC64 <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n<b>Title:</b>\n").concat(title, "\n<b>Description:</b>\n").concat(body, "\n");
+            message = "\n\u2934 Pull request <a href=\"".concat(pullUrl, "\"><b>(#").concat(number, ")</b></a> in <a href=\"").concat(ownerUrl, "\">").concat(ownerLogin, "</a>/<a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\nOpened by: <a href=\"").concat(senderUrl, "\"><b>").concat(senderLogin, "</b></a>\nTitle: <b>Title: ").concat(title, "</b>\n");
             // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
             // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
             bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
