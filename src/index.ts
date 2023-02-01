@@ -59,11 +59,9 @@ const chatId = 345021341;
   const message = `
 ⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a> 
 
-New pull request created by <a href="${senderUrl}">${senderLogin}</a> in <a href="${ownerUrl}">${ownerLogin}</a>/<a href="${repositoryUrl}">${repositoryName}</a>
+New pull request created by <a href="${senderUrl}">${senderLogin}</a>
 
-<b>Base branch:</b> ${baseBranch}
-<b>Compare branch:</b> ${compareBranch}
-
+<b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
 <b>Changed files:</b> ${changed_files}
 <b>Additions:</b> +${additions}
 <b>Deletions:</b> -${deletions}
