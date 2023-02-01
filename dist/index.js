@@ -63581,6 +63581,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+/* eslint-disable @typescript-eslint/naming-convention */
 var core = __importStar(__nccwpck_require__(2186));
 var github = __importStar(__nccwpck_require__(5438));
 var node_telegram_bot_api_1 = __importDefault(__nccwpck_require__(633));
@@ -63592,10 +63593,11 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var chatId = 345021341;
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, _a, title, body, number, commits;
-        return __generator(this, function (_b) {
+        var bot, _a, title, body, number, commits, _b, login, html_url;
+        return __generator(this, function (_c) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
             _a = github.context.payload.pull_request, title = _a.title, body = _a.body, number = _a.number, commits = _a.commits;
+            _b = github.context.payload.sender, login = _b.login, html_url = _b.html_url;
             // const reviewers = octokit.rest.pulls.listReviews({
             //   owner,
             //   repo: repositoryName,
@@ -63611,7 +63613,7 @@ var chatId = 345021341;
             //   result.deletions += current.deletions;
             //   return result;
             // }, { additions: 0, deletions: 0 });
-            bot.sendMessage(chatId, "".concat(title, ", ").concat(body, ", ").concat(number, ", ").concat(commits));
+            bot.sendMessage(chatId, "".concat(title, ", ").concat(body, ", ").concat(number, ", ").concat(commits, ", ").concat(login, ", ").concat(html_url));
             console.log('Repo context: ', JSON.stringify(github.context.repo));
             console.log('Payload: ', JSON.stringify(github.context.payload));
             return [2 /*return*/];

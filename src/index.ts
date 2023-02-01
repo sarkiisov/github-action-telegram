@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import Bot from 'node-telegram-bot-api';
@@ -22,6 +23,8 @@ const chatId = 345021341;
     title, body, number, commits
   } = github.context.payload.pull_request;
 
+  const { login, html_url } = github.context.payload.sender;
+
   // const reviewers = octokit.rest.pulls.listReviews({
   //   owner,
   //   repo: repositoryName,
@@ -40,7 +43,7 @@ const chatId = 345021341;
   //   return result;
   // }, { additions: 0, deletions: 0 });
 
-  bot.sendMessage(chatId, `${title}, ${body}, ${number}, ${commits}`);
+  bot.sendMessage(chatId, `${title}, ${body}, ${number}, ${commits}, ${login}, ${html_url}`);
   console.log('Repo context: ', JSON.stringify(github.context.repo));
   console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));
