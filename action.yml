@@ -1,0 +1,17 @@
+name: 'GitHub PR Telegram notify'
+branding:
+  icon: 'send'
+  color: 'grey-dark'
+inputs:
+  telegramBotToken:
+    description: 'Telegram bot token'
+    required: true
+  telegramChatId:
+    description: 'Telegram chat id'
+    required: true
+  githubToken:
+    description: 'GitHub token'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
