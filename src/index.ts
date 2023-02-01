@@ -57,16 +57,14 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a>
+⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a> 
 
-<b>Author:</b> <a href="${senderUrl}">${senderLogin}</a>
-<b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
+New pull request created by <a href="${senderUrl}">${senderLogin}</a>
 
-<b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
-<b>Base branch:</b> ${baseBranch}
-<b>Compare branch:</b> ${compareBranch}
-
-<pre>${body}</pre>
+<b>Repository</b> <a href="${repositoryUrl}">${repositoryName}</a>
+<b>Base branch</b> ${baseBranch}
+<b>Compare branch</b> ${compareBranch}
+<b>Reviewers</b> ${reviewers === '' ? 'No reviewers' : reviewers}
 `;
 
   const m1 = `
