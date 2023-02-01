@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -22,13 +23,13 @@ const chatId = 345021341;
   const { action } = github.context.payload;
 
   const {
-    title, number, commits, html_url: pullUrl, additions, deletions, changed_files, requested_reviewers
+    title, number, commits, html_url: pullUrl, additions, deletions, changed_files
   } = github.context.payload.pull_request;
 
-  const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
-    const line = `${currentValue.login} ${currentValue.html_url} \n`;
-    return accumulator + line;
-  }, '');
+  // const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
+  //   const line = `${currentValue.login} ${currentValue.html_url} \n`;
+  //   return accumulator + line;
+  // }, '');
 
   const { login, html_url: senderUrl } = github.context.payload.sender;
 
@@ -54,13 +55,6 @@ const chatId = 345021341;
 Pull request ${action} by [${login}](${senderUrl})
 
 *${title} (${number})*
-
-Commits: ${commits}
-Addition: ${additions}
-Deletions: ${deletions}
-Changed files: ${changed_files}
-Reviewers:
-${reviewers}
 
 [View details](${pullUrl})
 `;
