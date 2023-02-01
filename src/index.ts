@@ -51,7 +51,7 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-⤴ Pull request ${action} by [${login}](${senderUrl})
+Pull request ${action} by [${login}](${senderUrl})
 
 *${title} (${number})*
 

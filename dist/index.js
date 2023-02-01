@@ -63603,7 +63603,7 @@ var chatId = 345021341;
                 return accumulator + line;
             }, '');
             _b = github.context.payload.sender, login = _b.login, senderUrl = _b.html_url;
-            message = "\n\u2934 Pull request ".concat(action, " by [").concat(login, "](").concat(senderUrl, ")\n\n*").concat(title, " (").concat(number, ")*\n\nCommits: ").concat(commits, "\nAddition: ").concat(additions, "\nDeletions: ").concat(deletions, "\nChanged files: ").concat(changed_files, "\nReviewers:\n").concat(reviewers, "\n\n[View details](").concat(pullUrl, ")\n");
+            message = "\nPull request ".concat(action, " by [").concat(login, "](").concat(senderUrl, ")\n\n*").concat(title, " (").concat(number, ")*\n\nCommits: ").concat(commits, "\nAddition: ").concat(additions, "\nDeletions: ").concat(deletions, "\nChanged files: ").concat(changed_files, "\nReviewers:\n").concat(reviewers, "\n\n[View details](").concat(pullUrl, ")\n");
             // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
             // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
             bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
