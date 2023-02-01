@@ -52,11 +52,16 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-Pull request ${action} by [${login}](${senderUrl})
+Pull request ${action} by
 
 *${title} (${number})*
 
-[View details](${pullUrl})
+Commits: ${commits}
+Addition: ${additions}
+Deletions: ${deletions}
+Changed files: ${changed_files}
+Reviewers:
+
 `;
 
   // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},

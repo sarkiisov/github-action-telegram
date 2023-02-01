@@ -63600,7 +63600,7 @@ var chatId = 345021341;
             action = github.context.payload.action;
             _a = github.context.payload.pull_request, title = _a.title, number = _a.number, commits = _a.commits, pullUrl = _a.html_url, additions = _a.additions, deletions = _a.deletions, changed_files = _a.changed_files;
             _b = github.context.payload.sender, login = _b.login, senderUrl = _b.html_url;
-            message = "\nPull request ".concat(action, " by [").concat(login, "](").concat(senderUrl, ")\n\n*").concat(title, " (").concat(number, ")*\n\n[View details](").concat(pullUrl, ")\n");
+            message = "\nPull request ".concat(action, " by\n\n*").concat(title, " (").concat(number, ")*\n\nCommits: ").concat(commits, "\nAddition: ").concat(additions, "\nDeletions: ").concat(deletions, "\nChanged files: ").concat(changed_files, "\nReviewers:\n\n");
             // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
             // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
             bot.sendMessage(chatId, message, { parse_mode: 'MarkdownV2' });
