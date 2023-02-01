@@ -60,7 +60,7 @@ const chatId = 345021341;
 ⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a>
 <b>[${ownerLogin}/${repositoryName}]</b>
 
-<b>Branches</b>: ${baseBranch} < ${compareBranch}
+<b>Branches</b>: ${baseBranch} &lt; ${compareBranch}
 <b>Author:</b> <a href="${senderUrl}">${senderLogin}</a>
 <b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
 <b>Description:</b>
