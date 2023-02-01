@@ -54,8 +54,8 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-[<a href="${ownerUrl}">${ownerLogin}</a> / <a href="${repositoryUrl}">${repositoryName}</a>]
-⤴ Pull request <a href="${pullUrl}">${title} (<b>#${number}</b>)</a>
+<b>[${ownerLogin} / ${repositoryName}]</b>
+⤴ Pull request: <a href="${pullUrl}">${title} (<b>#${number}</b>)</a>
 👤 Opened by: <a href="${senderUrl}">${senderLogin}</a>
 `;
 
