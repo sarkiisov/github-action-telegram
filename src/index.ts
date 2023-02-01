@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -51,23 +52,16 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-Pull request ${action} by <a href="${senderUrl}">${login}</a>
-
+⤴ Pull request ${action} by <a href="${senderUrl}">${login}</a>
 <b>${title} (${number})</b>
-
 Commits: ${commits}
-Addition: ${additions}
-Deletions: ${deletions}
 Changed files: ${changed_files}
-Reviewers:
-${reviewers}
-
-<a href="${pullUrl}">View details</a>
+<a href="${pullUrl}"><b>View details</b></a>
 `;
 
   // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
   // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
-  bot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+  bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
   console.log('Repo context: ', JSON.stringify(github.context.repo));
   console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));

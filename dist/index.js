@@ -63581,6 +63581,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/naming-convention */
 var core = __importStar(__nccwpck_require__(2186));
 var github = __importStar(__nccwpck_require__(5438));
@@ -63603,10 +63604,10 @@ var chatId = 345021341;
                 return accumulator + line;
             }, '');
             _b = github.context.payload.sender, login = _b.login, senderUrl = _b.html_url;
-            message = "\nPull request ".concat(action, " by <a href=\"").concat(senderUrl, "\">").concat(login, "</a>\n\n<b>").concat(title, " (").concat(number, ")</b>\n\nCommits: ").concat(commits, "\nAddition: ").concat(additions, "\nDeletions: ").concat(deletions, "\nChanged files: ").concat(changed_files, "\nReviewers:\n").concat(reviewers, "\n\n<a href=\"").concat(pullUrl, "\">View details</a>\n");
+            message = "\n\u2934 Pull request ".concat(action, " by <a href=\"").concat(senderUrl, "\">").concat(login, "</a>\n<b>").concat(title, " (").concat(number, ")</b>\nCommits: ").concat(commits, "\nChanged files: ").concat(changed_files, "\n<a href=\"").concat(pullUrl, "\"><b>View details</b></a>\n");
             // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
             // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
-            bot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+            bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
             console.log('Repo context: ', JSON.stringify(github.context.repo));
             console.log('Payload: ', JSON.stringify(github.context.payload));
             return [2 /*return*/];
