@@ -63594,7 +63594,7 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var chatId = 345021341;
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, action, _a, title, body, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, senderLogin, senderUrl, _c, repositoryName, repositoryUrl, _d, ownerLogin, ownerUrl, message;
+        var bot, action, _a, title, body, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, senderLogin, senderUrl, _c, repositoryName, repositoryUrl, _d, ownerLogin, ownerUrl, message, m1;
         return __generator(this, function (_e) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
             action = github.context.payload.action;
@@ -63606,7 +63606,8 @@ var chatId = 345021341;
             _b = github.context.payload.sender, senderLogin = _b.login, senderUrl = _b.html_url;
             _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
             _d = github.context.payload.repository.owner, ownerLogin = _d.login, ownerUrl = _d.html_url;
-            message = "\n\u2934 Pull request <a href=\"".concat(pullUrl, "\"><b>(#").concat(number, ")</b></a> in <a href=\"").concat(ownerUrl, "\">").concat(ownerLogin, "</a>/<a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\nOpened by: <a href=\"").concat(senderUrl, "\"><b>").concat(senderLogin, "</b></a>\nTitle: <b>").concat(title, "</b>\nCommits: <b>").concat(commits, "</b>\nAdditions: <b>+").concat(additions, "</b>\nDeletions: <b>-").concat(deletions, "</b>\nChanged files: <b>").concat(changed_files, "</b>\n");
+            message = "\n[<a href=\"".concat(ownerUrl, "\">").concat(ownerLogin, "</a>/<a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>]\n\u2934 Pull request <a href=\"").concat(pullUrl, "\"><b>").concat(title, " (#").concat(number, ")</b></a>\nOpened by: <a href=\"").concat(senderUrl, "\"><b>").concat(senderLogin, "</b></a>\n");
+            m1 = "\nCommits: <b>".concat(commits, "</b>\nAdditions: <b>+").concat(additions, "</b>\nDeletions: <b>-").concat(deletions, "</b>\nChanged files: <b>").concat(changed_files, "</b>\n");
             // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
             // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
             bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
