@@ -53,7 +53,7 @@ const chatId = 345021341;
   const message = `
 Pull request ${action} by <a href="${senderUrl}">${login}</a>
 
-<b>${title} (${number})<b>
+<b>${title} (${number})</b>
 
 Commits: ${commits}
 Addition: ${additions}
