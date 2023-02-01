@@ -62,8 +62,11 @@ const chatId = 345021341;
 <b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
 <b>Base branch:</b> ${baseBranch}
 <b>Compare branch:</b> ${compareBranch}
+
 <b>Author:</b> <a href="${senderUrl}">${senderLogin}</a>
 <b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
+
+${body}
 `;
 
   const m1 = `
