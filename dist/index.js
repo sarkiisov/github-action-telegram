@@ -63606,7 +63606,7 @@ var chatId = 345021341;
             _b = github.context.payload.sender, senderLogin = _b.login, senderUrl = _b.html_url;
             _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
             _d = github.context.payload.repository.owner, ownerLogin = _d.login, ownerUrl = _d.html_url;
-            message = "\n<b>[".concat(ownerLogin, " / ").concat(repositoryName, "]</b>\n\u2934 Pull request: <a href=\"").concat(pullUrl, "\">").concat(title, " (<b>#").concat(number, "</b>)</a>\n\uD83D\uDC64 Opened by: <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n");
+            message = "\n<b>[".concat(ownerLogin, " / ").concat(repositoryName, "]</b>\n\n\u2934 Pull request: <a href=\"").concat(pullUrl, "\">").concat(title, " (<b>#").concat(number, "</b>)</a>\n\uD83D\uDC64 Opened by: \n<a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\u270D\uFE0F Description:\n").concat(body, "\n");
             m1 = "\nCommits: <b>".concat(commits, "</b>\nAdditions: <b>+").concat(additions, "</b>\nDeletions: <b>-").concat(deletions, "</b>\nChanged files: <b>").concat(changed_files, "</b>\n");
             // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
             // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
