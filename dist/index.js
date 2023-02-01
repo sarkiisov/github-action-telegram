@@ -63608,7 +63608,7 @@ var chatId = 345021341;
             _d = github.context.payload.repository.owner, ownerLogin = _d.login, ownerUrl = _d.html_url;
             baseBranch = github.context.payload.pull_request.base.ref;
             compareBranch = github.context.payload.pull_request.head.ref;
-            message = "\n\u2934\uFE0F <a href=\"".concat(pullUrl, "\"><b>#").concat(number, " ").concat(title, "</b></a> \n\nPull request created by <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\n<b>Repository:</b> <a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\n<b>Changed files:</b> ").concat(changed_files, "\n<b>Additions:</b> +").concat(additions, "\n<b>Deletions:</b> -").concat(deletions, "\n<b>Reviewers:</b> ").concat(reviewers === '' ? 'No reviewers' : reviewers, "\n");
+            message = "\n\u2934\uFE0F <a href=\"".concat(pullUrl, "\"><b>#").concat(number, " ").concat(title, "</b></a> \n\nPull request created by <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\n<b>Repository:</b> <a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\n<b>Changed files:</b> ").concat(changed_files, "\n<b>Additions:</b> +").concat(additions, "\n<b>Deletions:</b> -").concat(deletions, "\n").concat(requested_reviewers.length !== 0 && "<b>Reviewers:\n</b>".concat(reviewers), "\n");
             m1 = "\nCommits: <b>".concat(commits, "</b>\n");
             bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
             return [2 /*return*/];

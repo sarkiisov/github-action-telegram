@@ -65,7 +65,7 @@ Pull request created by <a href="${senderUrl}">${senderLogin}</a>
 <b>Changed files:</b> ${changed_files}
 <b>Additions:</b> +${additions}
 <b>Deletions:</b> -${deletions}
-<b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
+${requested_reviewers.length !== 0 && `<b>Reviewers:\n</b>${reviewers}`}
 `;
 
   const m1 = `
