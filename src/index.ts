@@ -35,7 +35,7 @@ const chatId = 345021341;
   const { name: repositoryName, html_url: repositoryUrl } = github.context.payload.repository;
   const { login: ownerLogin, html_url: ownerUrl } = github.context.payload.repository.owner;
 
-  const baseBranch = github.context.payload.pull_request.head.ref;
+  const baseBranch = github.context.payload.pull_request.base.ref;
   const compareBranch = github.context.payload.pull_request.head.ref;
 
   // const reviewers = octokit.rest.pulls.listReviews({
@@ -57,13 +57,14 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
+⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a>
 <b>[${ownerLogin}/${repositoryName}]</b>
 
-⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a>
-
-<b>Branches</b>: ${baseBranch} ⬅️ ${compareBranch}
+<b>Branches</b>: ${baseBranch} < ${compareBranch}
 <b>Author:</b> <a href="${senderUrl}">${senderLogin}</a>
 <b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
+<b>Description:</b>
+${body}
 `;
 
   const m1 = `
