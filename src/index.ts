@@ -61,17 +61,15 @@ const chatId = 345021341;
 
 New pull request created by <a href="${senderUrl}">${senderLogin}</a>
 
-<b>Repository</b> <a href="${repositoryUrl}">${repositoryName}</a>
-<b>Base branch</b> ${baseBranch}
-<b>Compare branch</b> ${compareBranch}
-<b>Reviewers</b> ${reviewers === '' ? 'No reviewers' : reviewers}
+<b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
+Changed files: <b>${changed_files}</b>
+Additions: <b>+${additions}</b>
+Deletions: <b>-${deletions}</b>
+<b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
 `;
 
   const m1 = `
 Commits: <b>${commits}</b>
-Additions: <b>+${additions}</b>
-Deletions: <b>-${deletions}</b>
-Changed files: <b>${changed_files}</b>
 `;
   bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
 
