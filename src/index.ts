@@ -56,6 +56,13 @@ const chatId = 345021341;
   //   return result;
   // }, { additions: 0, deletions: 0 });
 
+  const getReviewers = () => {
+    if (requested_reviewers.length !== 0) {
+      return `<b>Reviewers:\n</b>${reviewers}`;
+    }
+    return '';
+  };
+
   const message = `
 ⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a> 
 
@@ -65,7 +72,7 @@ Pull request created by <a href="${senderUrl}">${senderLogin}</a>
 <b>Changed files:</b> ${changed_files}
 <b>Additions:</b> +${additions}
 <b>Deletions:</b> -${deletions}
-${requested_reviewers.length !== 0 && `<b>Reviewers:\n</b>${reviewers}`}
+${getReviewers()}
 `;
 
   const m1 = `
