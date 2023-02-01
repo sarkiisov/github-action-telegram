@@ -59,7 +59,7 @@ const chatId = 345021341;
   const message = `
 ⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a> 
 
-New pull request created by <a href="${senderUrl}">${senderLogin}</a>
+Pull request created by <a href="${senderUrl}">${senderLogin}</a>
 
 <b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
 <b>Changed files:</b> ${changed_files}
