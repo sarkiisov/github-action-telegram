@@ -23,15 +23,17 @@ const chatId = 345021341;
   const { action } = github.context.payload;
 
   const {
-    title, number, commits, html_url: pullUrl, additions, deletions, changed_files, requested_reviewers
+    title, body, number, commits, html_url: pullUrl, additions, deletions, changed_files, requested_reviewers
   } = github.context.payload.pull_request;
 
   const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
-    const line = `${currentValue.login} ${currentValue.html_url} \n`;
+    const line = `${currentValue.login} ${currentValue.html_url} `;
     return accumulator + line;
   }, '');
 
-  const { login, html_url: senderUrl } = github.context.payload.sender;
+  const { login: senderLogin, html_url: senderUrl } = github.context.payload.sender;
+  const { name: repositoryName, html_url: repositoryUrl } = github.context.payload.repository;
+  const { login: ownerLogin, html_url: ownerUrl } = github.context.payload.repository.owner;
 
   // const reviewers = octokit.rest.pulls.listReviews({
   //   owner,
@@ -52,11 +54,12 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-⤴ Pull request ${action} by <a href="${senderUrl}">${login}</a>
-<b>${title} (${number})</b>
-Commits: ${commits}
-Changed files: ${changed_files}
-<a href="${pullUrl}"><b>View details</b></a>
+⤴ Pull request <a href="${pullUrl}"><b>(#${number})</b></a> in <a href="${ownerUrl}">${ownerLogin}</a>/<a href="${repositoryUrl}">${repositoryName}</a>
+👤 <a href="${senderUrl}">${senderLogin}</a>
+<b>Title:</b>
+${title}
+<b>Description:</b>
+${body}
 `;
 
   // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
