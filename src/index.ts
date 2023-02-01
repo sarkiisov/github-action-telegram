@@ -62,9 +62,9 @@ const chatId = 345021341;
 New pull request created by <a href="${senderUrl}">${senderLogin}</a>
 
 <b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
-Changed files: <b>${changed_files}</b>
-Additions: <b>+${additions}</b>
-Deletions: <b>-${deletions}</b>
+<b>Changed files:</b> ${changed_files}
+<b>Additions:</b> +${additions}
+<b>Deletions:</b> -${deletions}
 <b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
 `;
 
