@@ -63594,19 +63594,21 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var chatId = 345021341;
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, action, _a, title, body, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, senderLogin, senderUrl, _c, repositoryName, repositoryUrl, _d, ownerLogin, ownerUrl, message, m1;
+        var bot, action, _a, title, body, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, senderLogin, senderUrl, _c, repositoryName, repositoryUrl, _d, ownerLogin, ownerUrl, baseBranch, compareBranch, message, m1;
         return __generator(this, function (_e) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
             action = github.context.payload.action;
             _a = github.context.payload.pull_request, title = _a.title, body = _a.body, number = _a.number, commits = _a.commits, pullUrl = _a.html_url, additions = _a.additions, deletions = _a.deletions, changed_files = _a.changed_files, requested_reviewers = _a.requested_reviewers;
             reviewers = requested_reviewers.reduce(function (accumulator, currentValue) {
-                var line = "<a href=\"".concat(currentValue.html_url, "\">").concat(currentValue.login, "</a>\n");
+                var line = "<a href=\"".concat(currentValue.html_url, "\">").concat(currentValue.login, "</a> ");
                 return accumulator + line;
             }, '');
             _b = github.context.payload.sender, senderLogin = _b.login, senderUrl = _b.html_url;
             _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
             _d = github.context.payload.repository.owner, ownerLogin = _d.login, ownerUrl = _d.html_url;
-            message = "\n<b>[".concat(ownerLogin, " / ").concat(repositoryName, "]</b>\n\n\u2934 <a href=\"").concat(pullUrl, "\"><b>").concat(title, " (PR #").concat(number, ")</b></a>\n\n\uD83D\uDC68\u200D\uD83D\uDCBB <b>Opened by:</b> \n<a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\u270D\uFE0F <b>Description:</b>\n").concat(body, "\n\uD83D\uDD75\uFE0F\u200D\u2642\uFE0F <b>Reviewers:</b>\n").concat(reviewers === '' ? 'No reviewers' : reviewers, "\n");
+            baseBranch = github.context.payload.pull_request.head.ref;
+            compareBranch = github.context.payload.pull_request.head.ref;
+            message = "\n<b>[".concat(ownerLogin, "/").concat(repositoryName, "]</b>\n\n\u2934\uFE0F <a href=\"").concat(pullUrl, "\"><b>#").concat(number, " ").concat(title, "</b></a>\n\n<b>Branches</b>: ").concat(baseBranch, " \u2B05\uFE0F ").concat(compareBranch, "\n<b>Author:</b> <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n<b>Reviewers:</b> ").concat(reviewers === '' ? 'No reviewers' : reviewers, "\n");
             m1 = "\nCommits: <b>".concat(commits, "</b>\nAdditions: <b>+").concat(additions, "</b>\nDeletions: <b>-").concat(deletions, "</b>\nChanged files: <b>").concat(changed_files, "</b>\n");
             bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
             return [2 /*return*/];

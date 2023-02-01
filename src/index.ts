@@ -27,13 +27,16 @@ const chatId = 345021341;
   } = github.context.payload.pull_request;
 
   const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
-    const line = `<a href="${currentValue.html_url}">${currentValue.login}</a>\n`;
+    const line = `<a href="${currentValue.html_url}">${currentValue.login}</a> `;
     return accumulator + line;
   }, '');
 
   const { login: senderLogin, html_url: senderUrl } = github.context.payload.sender;
   const { name: repositoryName, html_url: repositoryUrl } = github.context.payload.repository;
   const { login: ownerLogin, html_url: ownerUrl } = github.context.payload.repository.owner;
+
+  const baseBranch = github.context.payload.pull_request.head.ref;
+  const compareBranch = github.context.payload.pull_request.head.ref;
 
   // const reviewers = octokit.rest.pulls.listReviews({
   //   owner,
@@ -54,16 +57,13 @@ const chatId = 345021341;
   // }, { additions: 0, deletions: 0 });
 
   const message = `
-<b>[${ownerLogin} / ${repositoryName}]</b>
+<b>[${ownerLogin}/${repositoryName}]</b>
 
-⤴ <a href="${pullUrl}"><b>${title} (PR #${number})</b></a>
+⤴️ <a href="${pullUrl}"><b>#${number} ${title}</b></a>
 
-👨‍💻 <b>Opened by:</b> 
-<a href="${senderUrl}">${senderLogin}</a>
-✍️ <b>Description:</b>
-${body}
-🕵️‍♂️ <b>Reviewers:</b>
-${reviewers === '' ? 'No reviewers' : reviewers}
+<b>Branches</b>: ${baseBranch} ⬅️ ${compareBranch}
+<b>Author:</b> <a href="${senderUrl}">${senderLogin}</a>
+<b>Reviewers:</b> ${reviewers === '' ? 'No reviewers' : reviewers}
 `;
 
   const m1 = `
