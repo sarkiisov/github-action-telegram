@@ -63593,11 +63593,15 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var chatId = 345021341;
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var bot, _a, title, body, number, commits, _b, login, html_url;
+        var bot, _a, title, body, number, commits, pullUrl, additions, deletions, changed_files, requested_reviewers, reviewers, _b, login, senderUrl;
         return __generator(this, function (_c) {
             bot = new node_telegram_bot_api_1.default(telegramBotToken);
-            _a = github.context.payload.pull_request, title = _a.title, body = _a.body, number = _a.number, commits = _a.commits;
-            _b = github.context.payload.sender, login = _b.login, html_url = _b.html_url;
+            _a = github.context.payload.pull_request, title = _a.title, body = _a.body, number = _a.number, commits = _a.commits, pullUrl = _a.html_url, additions = _a.additions, deletions = _a.deletions, changed_files = _a.changed_files, requested_reviewers = _a.requested_reviewers;
+            reviewers = requested_reviewers.reduce(function (accumulator, currentValue) {
+                var line = "".concat(currentValue.login, " ").concat(currentValue.html_url, " \n");
+                return accumulator + line;
+            }, '');
+            _b = github.context.payload.sender, login = _b.login, senderUrl = _b.html_url;
             // const reviewers = octokit.rest.pulls.listReviews({
             //   owner,
             //   repo: repositoryName,
@@ -63613,7 +63617,7 @@ var chatId = 345021341;
             //   result.deletions += current.deletions;
             //   return result;
             // }, { additions: 0, deletions: 0 });
-            bot.sendMessage(chatId, "".concat(title, ", ").concat(body, ", ").concat(number, ", ").concat(commits, ", ").concat(login, ", ").concat(html_url));
+            bot.sendMessage(chatId, "PullUrl: ".concat(pullUrl, ", Title ").concat(title, ", Body: ").concat(body, ", \n  Number: ").concat(number, ", Commits: ").concat(commits, ", SenderLogin: ").concat(login, ", SenderUrl: ").concat(senderUrl, ", Additions: ").concat(additions, ", Deletions: ").concat(deletions, ", CahngedFiles: ").concat(changed_files, ", Reviewers ").concat(reviewers));
             console.log('Repo context: ', JSON.stringify(github.context.repo));
             console.log('Payload: ', JSON.stringify(github.context.payload));
             return [2 /*return*/];

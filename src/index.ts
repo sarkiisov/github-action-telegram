@@ -20,10 +20,15 @@ const chatId = 345021341;
   // const octokit = github.getOctokit(githubToken);
 
   const {
-    title, body, number, commits
+    title, body, number, commits, html_url: pullUrl, additions, deletions, changed_files, requested_reviewers
   } = github.context.payload.pull_request;
 
-  const { login, html_url } = github.context.payload.sender;
+  const reviewers = requested_reviewers.reduce((accumulator, currentValue) => {
+    const line = `${currentValue.login} ${currentValue.html_url} \n`;
+    return accumulator + line;
+  }, '');
+
+  const { login, html_url: senderUrl } = github.context.payload.sender;
 
   // const reviewers = octokit.rest.pulls.listReviews({
   //   owner,
@@ -43,7 +48,8 @@ const chatId = 345021341;
   //   return result;
   // }, { additions: 0, deletions: 0 });
 
-  bot.sendMessage(chatId, `${title}, ${body}, ${number}, ${commits}, ${login}, ${html_url}`);
+  bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body}, 
+  Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
   console.log('Repo context: ', JSON.stringify(github.context.repo));
   console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));
