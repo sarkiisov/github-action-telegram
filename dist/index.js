@@ -63558,7 +63558,7 @@ var telegramChatId = core.getInput('telegramChatId');
     var baseBranch = github.context.payload.pull_request.base.ref;
     var compareBranch = github.context.payload.pull_request.head.ref;
     var formatKeyValueString = function (key, value) { return "<b>".concat(key, ": </b>").concat(value); };
-    var formattedReviewers = requestedReviewers.users.map(function (user) { return "<a href=\"".concat(user.html_url, "\">").concat(user.login, "</a>"); }).join(',\n');
+    var formattedReviewers = requestedReviewers.map(function (user) { return "<a href=\"".concat(user.html_url, "\">").concat(user.login, "</a>"); }).join(',\n');
     var notificationMessage = "\n<a href=\"".concat(senderUrl, "\">").concat(senderLogin, "</a> created a pull request\n<a href=\"").concat(pullUrl, "\"><b>#").concat(pullNumber, " ").concat(pullTitle, "</b></a>\n\n").concat(formatKeyValueString('Repository', "<a href=\"".concat(repositoryUrl, "\">").concat(repositoryName, "</a>")), "\n").concat(formatKeyValueString('Created', createdAt.split(' ')[0]), "\n").concat(formatKeyValueString('Branch', "".concat(baseBranch, " \u2190 ").concat(compareBranch)), "\n").concat(formatKeyValueString('Reviewers', formattedReviewers), "\n");
     bot.sendMessage(telegramChatId, notificationMessage, {
         parse_mode: 'HTML',
