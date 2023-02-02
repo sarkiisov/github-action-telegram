@@ -63552,10 +63552,14 @@ var telegramBotToken = core.getInput('telegramBotToken');
 var telegramChatId = core.getInput('telegramChatId');
 (function () {
     var bot = new node_telegram_bot_api_1.default(telegramBotToken);
-    var _a = github.context.payload.pull_request, pullTitle = _a.title, pullNumber = _a.number, pullUrl = _a.html_url, additions = _a.additions, deletions = _a.deletions, changedFiled = _a.changed_files;
+    var _a = github.context.payload.pull_request, pullTitle = _a.title, pullNumber = _a.number, pullUrl = _a.html_url, createdAt = _a.created_at, requestedReviewers = _a.requested_reviewers;
     var _b = github.context.payload.sender, senderLogin = _b.login, senderUrl = _b.html_url;
     var _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
-    var notificationMessage = "\n\u2934\uFE0F<a href=\"".concat(pullUrl, "\"><b>#").concat(pullNumber, " ").concat(pullTitle, "</b></a>\n\nPull request created by <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n<b>Repository:</b> <a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\n<b>Changed files:</b> ").concat(changedFiled, "\n<b>Additions:</b> +").concat(additions, "\n<b>Deletions:</b> -").concat(deletions, "\n");
+    var baseBranch = github.context.payload.pull_request.base.ref;
+    var compareBranch = github.context.payload.pull_request.head.ref;
+    var formatKeyValueString = function (key, value) { return "<b>".concat(key, ": </b>").concat(value); };
+    var formattedReviewers = requestedReviewers.users.map(function (user) { return "<a href=\"".concat(user.html_url, "\">").concat(user.login, "</a>"); }).join(',\n');
+    var notificationMessage = "\n<a href=\"".concat(senderUrl, "\">").concat(senderLogin, "</a> created a pull request\n<a href=\"").concat(pullUrl, "\"><b>#").concat(pullNumber, " ").concat(pullTitle, "</b></a>\n\n").concat(formatKeyValueString('Repository', "<a href=\"".concat(repositoryUrl, "\">").concat(repositoryName, "</a>")), "\n").concat(formatKeyValueString('Created', createdAt.split(' ')[0]), "\n").concat(formatKeyValueString('Branch', "".concat(baseBranch, " \u2190 ").concat(compareBranch)), "\n").concat(formatKeyValueString('Reviewers', formattedReviewers), "\n");
     bot.sendMessage(telegramChatId, notificationMessage, {
         parse_mode: 'HTML',
         disable_web_page_preview: true
