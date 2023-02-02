@@ -29,16 +29,18 @@ const telegramChatId = core.getInput('telegramChatId');
   const baseBranch = github.context.payload.pull_request.base.ref;
   const compareBranch = github.context.payload.pull_request.head.ref;
 
+  const formatKeyValueString = (key: string, value: string) => `<b>${key}: </b>${value}`;
+
   const formattedReviewers = requestedReviewers.users.map((user) => `<a href="${user.html_url}">${user.login}</a>`).join(',\n');
 
   const notificationMessage = `
 <a href="${senderUrl}">${senderLogin}</a> created a pull request
 <a href="${pullUrl}"><b>#${pullNumber} ${pullTitle}</b></a>
 
-<b>Repository: </b><a href="${repositoryUrl}">${repositoryName}</a>
-<b>Created: </b>${createdAt.split(' ')[0]}
-<b>Branch: </b>${baseBranch} ← ${compareBranch}
-<b>Reviewers: </b>${formattedReviewers}
+${formatKeyValueString('Repository', `<a href="${repositoryUrl}">${repositoryName}</a>`)}
+${formatKeyValueString('Created', createdAt.split(' ')[0])}
+${formatKeyValueString('Branch', `${baseBranch} ← ${compareBranch}`)}
+${formatKeyValueString('Reviewers', formattedReviewers)}
 `;
 
   bot.sendMessage(
