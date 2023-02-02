@@ -31,7 +31,7 @@ const telegramChatId = core.getInput('telegramChatId');
 
   const formatKeyValueString = (key: string, value: string) => `<b>${key}: </b>${value}`;
 
-  const formattedReviewers = requestedReviewers.users.map((user) => `<a href="${user.html_url}">${user.login}</a>`).join(',\n');
+  const formattedReviewers = requestedReviewers.map((user) => `<a href="${user.html_url}">${user.login}</a>`).join(',\n');
 
   const notificationMessage = `
 <a href="${senderUrl}">${senderLogin}</a> created a pull request
