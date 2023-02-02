@@ -78,11 +78,10 @@ ${getReviewers()}
   const m1 = `
 Commits: <b>${commits}</b>
 `;
-  bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
-
+  // bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
   // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
   // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
   // console.log('Repo context: ', JSON.stringify(github.context.repo));
-  // console.log('Payload: ', JSON.stringify(github.context.payload));
+  console.log('Payload: ', JSON.stringify(github.context.payload));
   // bot.sendMessage(chatId, JSON.stringify(github.context.payload));
 }());

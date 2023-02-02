@@ -63616,7 +63616,11 @@ var chatId = 345021341;
             };
             message = "\n\u2934\uFE0F <a href=\"".concat(pullUrl, "\"><b>#").concat(number, " ").concat(title, "</b></a> \n\nPull request created by <a href=\"").concat(senderUrl, "\">").concat(senderLogin, "</a>\n\n<b>Repository:</b> <a href=\"").concat(repositoryUrl, "\">").concat(repositoryName, "</a>\n<b>Changed files:</b> ").concat(changed_files, "\n<b>Additions:</b> +").concat(additions, "\n<b>Deletions:</b> -").concat(deletions, "\n").concat(getReviewers(), "\n");
             m1 = "\nCommits: <b>".concat(commits, "</b>\n");
-            bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
+            // bot.sendMessage(chatId, message, { parse_mode: 'HTML', disable_web_page_preview: true });
+            // bot.sendMessage(chatId, `PullUrl: ${pullUrl}, Title ${title}, Body: ${body},
+            // Number: ${number}, Commits: ${commits}, SenderLogin: ${login}, SenderUrl: ${senderUrl}, Additions: ${additions}, Deletions: ${deletions}, CahngedFiles: ${changed_files}, Reviewers ${reviewers}`);
+            // console.log('Repo context: ', JSON.stringify(github.context.repo));
+            console.log('Payload: ', JSON.stringify(github.context.payload));
             return [2 /*return*/];
         });
     });
