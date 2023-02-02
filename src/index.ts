@@ -12,9 +12,8 @@ const telegramChatId = core.getInput('telegramChatId');
     title: pullTitle,
     number: pullNumber,
     html_url: pullUrl,
-    additions,
-    deletions,
-    changed_files: changedFiled
+    created_at: createdAt,
+    requested_reviewers: requestedReviewers
   } = github.context.payload.pull_request;
 
   const {
@@ -27,14 +26,19 @@ const telegramChatId = core.getInput('telegramChatId');
     html_url: repositoryUrl
   } = github.context.payload.repository;
 
-  const notificationMessage = `
-⤴️<a href="${pullUrl}"><b>#${pullNumber} ${pullTitle}</b></a>
+  const baseBranch = github.context.payload.pull_request.base.ref;
+  const compareBranch = github.context.payload.pull_request.head.ref;
 
-Pull request created by <a href="${senderUrl}">${senderLogin}</a>
-<b>Repository:</b> <a href="${repositoryUrl}">${repositoryName}</a>
-<b>Changed files:</b> ${changedFiled}
-<b>Additions:</b> +${additions}
-<b>Deletions:</b> -${deletions}
+  const formattedReviewers = requestedReviewers.users.map((user) => `<a href="${user.html_url}">${user.login}</a>`).join(',\n');
+
+  const notificationMessage = `
+<a href="${senderUrl}">${senderLogin}</a> created a pull request
+<a href="${pullUrl}"><b>#${pullNumber} ${pullTitle}</b></a>
+
+<b>Repository: </b><a href="${repositoryUrl}">${repositoryName}</a>
+<b>Created: </b>${createdAt.split(' ')[0]}
+<b>Branch: </b>${baseBranch} ← ${compareBranch}
+<b>Reviewers: </b>${formattedReviewers}
 `;
 
   bot.sendMessage(
