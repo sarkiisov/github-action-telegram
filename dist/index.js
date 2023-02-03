@@ -63548,6 +63548,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var core = __importStar(__nccwpck_require__(2186));
 var github = __importStar(__nccwpck_require__(5438));
 var node_telegram_bot_api_1 = __importDefault(__nccwpck_require__(633));
+var utils_1 = __nccwpck_require__(6252);
 var telegramBotToken = core.getInput('telegramBotToken');
 var telegramChatId = core.getInput('telegramChatId');
 (function () {
@@ -63557,14 +63558,75 @@ var telegramChatId = core.getInput('telegramChatId');
     var _c = github.context.payload.repository, repositoryName = _c.name, repositoryUrl = _c.html_url;
     var baseBranch = github.context.payload.pull_request.base.ref;
     var compareBranch = github.context.payload.pull_request.head.ref;
-    var formatKeyValueString = function (key, value) { return "<b>".concat(key, ": </b>").concat(value); };
-    var formattedReviewers = requestedReviewers.map(function (user) { return "<a href=\"".concat(user.html_url, "\">").concat(user.login, "</a>"); }).join(',\n');
-    var notificationMessage = "\n<a href=\"".concat(senderUrl, "\">").concat(senderLogin, "</a> created a pull request\n<a href=\"").concat(pullUrl, "\"><b>#").concat(pullNumber, " ").concat(pullTitle, "</b></a>\n\n").concat(formatKeyValueString('Repository', "<a href=\"".concat(repositoryUrl, "\">").concat(repositoryName, "</a>")), "\n").concat(formatKeyValueString('Created', createdAt.split(' ')[0]), "\n").concat(formatKeyValueString('Branch', "".concat(baseBranch, " \u2190 ").concat(compareBranch)), "\n").concat(formatKeyValueString('Reviewers', formattedReviewers), "\n");
-    bot.sendMessage(telegramChatId, notificationMessage, {
-        parse_mode: 'HTML',
-        disable_web_page_preview: true
-    });
+    var notificationMessage = "\n<a href=\"".concat(senderUrl, "\">").concat(senderLogin, "</a> created a pull request\n<a href=\"").concat(pullUrl, "\"><b>#").concat(pullNumber, " ").concat(pullTitle, "</b></a>\n\n").concat((0, utils_1.formatKeyValueString)('Repository', (0, utils_1.formatUrl)(repositoryName, repositoryUrl)), "\n").concat((0, utils_1.formatKeyValueString)('Created', createdAt), "\n").concat((0, utils_1.formatKeyValueString)('Branch', "".concat(baseBranch, " \u2190 ").concat(compareBranch)), "\n").concat((0, utils_1.formatKeyValueString)('Reviewers', (0, utils_1.formatReviewersArray)(requestedReviewers)), "\n");
+    bot.sendMessage(telegramChatId, notificationMessage, { parse_mode: 'HTML', disable_web_page_preview: true });
 }());
+
+
+/***/ }),
+
+/***/ 4156:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.formatKeyValueString = void 0;
+var formatKeyValueString = function (key, value) { return "<b>".concat(key, ": </b>").concat(value); };
+exports.formatKeyValueString = formatKeyValueString;
+
+
+/***/ }),
+
+/***/ 3751:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.formatReviewersArray = void 0;
+var formatReviewersArray = function (reviewers) { return reviewers.map(function (user) { return "<a href=\"".concat(user.html_url, "\">").concat(user.login, "</a>"); }).join(',\n'); };
+exports.formatReviewersArray = formatReviewersArray;
+
+
+/***/ }),
+
+/***/ 8819:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.formatUrl = void 0;
+var formatUrl = function (title, url) { return "<a href=\"".concat(url, "\">").concat(title, "</a>"); };
+exports.formatUrl = formatUrl;
+
+
+/***/ }),
+
+/***/ 6252:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__nccwpck_require__(4156), exports);
+__exportStar(__nccwpck_require__(3751), exports);
+__exportStar(__nccwpck_require__(8819), exports);
 
 
 /***/ }),
